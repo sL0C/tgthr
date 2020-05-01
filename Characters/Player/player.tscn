@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Characters/character.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Characters/Player/player.gd" type="Script" id=2]
+
+[node name="player" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+
+[node name="Camera2D" type="Camera2D" parent="." index="1"]
+current = true
+
+[node name="step_Timer" type="Timer" parent="." index="2"]
+
+[node name="stand_Timer" type="Timer" parent="." index="3"]
+one_shot = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="4"]
