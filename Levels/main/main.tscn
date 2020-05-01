@@ -5,3 +5,6 @@
 [node name="main" type="Node2D"]
 
 [node name="player" parent="." instance=ExtResource( 1 )]
+health = 100
+move_speed = 100
+max_speed = 300
