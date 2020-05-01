@@ -45,3 +45,36 @@ func check_if_target_seen():
 				print("player found")
 				pass
 	pass
+
+
+func check_out_position():
+	pass
+
+func hear_sound(source):
+	var hits = segment_cast(source.position, position)
+	var obstructed_hearing = 0
+	var hearing_strength = 1
+	for object in hits:
+		if object.is_in_group("obstructs_hearing"):
+			obstructed_hearing -= object.hearing_restance
+	if hearing_strength - obstructed_hearing > 0.1:
+		check_out_position()
+	else:
+		return
+	pass
+	
+# Do this inside _fixed_process() or _integrate_forces()
+func segment_cast(begin_pos, end_pos):
+	var space_state = get_world_2d().get_direct_space_state()
+
+	var segment = SegmentShape2D.new()
+	segment.set_a(begin_pos)
+	segment.set_b(end_pos)
+
+	var query = Physics2DShapeQueryParameters.new()
+	query.set_shape(segment)
+	query.set_exclude([self]) # If you want to exclude the object casting the segment
+	query.set_layer_mask(0) # Set the collision mask you want, or none if you want to hit anything
+
+	var hits = space_state.intersect_shape(query, 32)
+	return hits

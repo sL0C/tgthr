@@ -27,3 +27,4 @@ func _physics_process(delta):
 	move_direction.y = int(Input.is_action_pressed("move_down")) - int(Input.is_action_pressed("move_up"))
 	move(move_direction)
 	velocity = move_and_slide(velocity) # velocity = move_and_slide() to keep track of velocity after colliding
+	pass
