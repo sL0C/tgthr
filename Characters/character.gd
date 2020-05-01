@@ -12,7 +12,7 @@ export  var max_speed:float = 300
 # Vector Types
 var velocity:Vector2 = Vector2.ZERO
 
-func take_damage(dmg:float) -> void: # To specify the return value increases the perfomance
+func take_damage(dmg:float) -> void: # To specify the return datatype increases the perfomance
 	health -= dmg
 	if health <= 0:
 		print(name + " died!")
