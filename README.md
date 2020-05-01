@@ -1,2 +1,3 @@
-# tgthr
-serious
+# Get to the king
+A game project
+

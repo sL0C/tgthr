@@ -12,5 +12,6 @@ current = true
 [node name="step_Timer" type="Timer" parent="." index="2"]
 
 [node name="stand_Timer" type="Timer" parent="." index="3"]
+one_shot = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="4"]

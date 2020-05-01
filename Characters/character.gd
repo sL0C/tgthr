@@ -1,18 +1,38 @@
 extends KinematicBody2D
-class_name character
+class_name Character
 
-export var health = 100
+# Constants
+const FRICTION_STRENGTH = 23 # The Strength of the friction force
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
+# To specify the datatype increases the perfomance
+export  var health:float = 100
+export  var move_speed:int = 100
+export  var max_speed:float = 300
 
-func take_damage(dmg):
+# Vector Types
+var velocity:Vector2 = Vector2.ZERO
+
+func take_damage(dmg:float) -> void: # To specify the return datatype increases the perfomance
 	health -= dmg
-	if health < 1:
+	if health <= 0:
+		print(name + " died!")
 		queue_free()
 
+# Take the direction and multiply it by the move_speed
+func move(dir:Vector2):
+	velocity += dir * move_speed
+	if velocity.length() > max_speed:
+		velocity = velocity.normalized() * max_speed
+	apply_friction()
+	
 
-func move(vec):
-	move_and_slide(vec)
-	pass
+# we have to ask ourself what friction is.
+# friction is a force, which applies when a object is moving!
+# but in which direction does friction point?
+# in the opposite direction of velocity
+# Formular: -1 * strength of friction * velocity
+func apply_friction():
+	if velocity.length() > FRICTION_STRENGTH:
+		velocity -= velocity.normalized() * FRICTION_STRENGTH
+	else:
+		velocity = Vector2.ZERO
