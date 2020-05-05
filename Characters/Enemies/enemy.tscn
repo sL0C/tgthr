@@ -1,11 +1,8 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Characters/Enemies/enemy.gd" type="Script" id=1]
 
 [sub_resource type="CircleShape2D" id=1]
-
-[sub_resource type="CircleShape2D" id=2]
-radius = 100.0
 
 [node name="enemy" type="KinematicBody2D"]
 script = ExtResource( 1 )
@@ -13,7 +10,11 @@ script = ExtResource( 1 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
 
-[node name="visibility" type="Area2D" parent="."]
+[node name="direct_vision" type="Area2D" parent="."]
+collision_layer = 3
+collision_mask = 3
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="visibility"]
-shape = SubResource( 2 )
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="direct_vision"]
+position = Vector2( 1.09891, 0.389378 )
+scale = Vector2( 1.19836, 1.19836 )
+polygon = PoolVector2Array( -0.959656, -0.272858, 47.8944, 87.3123, -48.7817, 87.3935 )

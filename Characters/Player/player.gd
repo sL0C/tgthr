@@ -18,13 +18,13 @@ func _ready():
 	health = 200
 	_init_connections()
 	set_physics_process(true)
+	$Camera2D.make_current()
+	pass
 	
 func _physics_process(delta):
 	var move_direction:Vector2
-	
 	# A neat trick to get the direction of movement
 	move_direction.x = int(Input.is_action_pressed("move_right")) - int(Input.is_action_pressed("move_left"))
 	move_direction.y = int(Input.is_action_pressed("move_down")) - int(Input.is_action_pressed("move_up"))
 	move(move_direction)
 	velocity = move_and_slide(velocity) # velocity = move_and_slide() to keep track of velocity after colliding
-	pass
